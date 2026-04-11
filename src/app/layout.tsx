@@ -3,7 +3,9 @@ import { Inter, IBM_Plex_Mono } from 'next/font/google'
 import { PropsWithChildren } from 'react'
 import { ClerkProvider } from '@clerk/nextjs'
 import { dark } from '@clerk/themes'
-import { ThemeProvider } from '@/components/providers/theme.provider'
+import ThemeProvider from '@/components/providers/theme.provider'
+import ConvexProvider from '@/components/providers/convex.provider'
+import AuthProvider from '@/components/providers/auth.provider'
 import './globals.css'
 
 const inter = Inter({
@@ -36,7 +38,11 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
           enableSystem
           disableTransitionOnChange
         >
-          <ClerkProvider appearance={{ theme: dark }}>{children}</ClerkProvider>
+          <ClerkProvider appearance={{ theme: dark }}>
+            <ConvexProvider>
+              <AuthProvider>{children}</AuthProvider>
+            </ConvexProvider>
+          </ClerkProvider>
         </ThemeProvider>
       </body>
     </html>
