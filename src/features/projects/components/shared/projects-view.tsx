@@ -78,7 +78,7 @@ export default function ProjectsView() {
               <Button
                 variant='outline'
                 onClick={() => createProject({ name: 'Untitled Project' })}
-                className='h-full items-start justify-start p-4 bg-background border flex flex-col gap-6 rounded-lg'
+                className='h-full items-start justify-start p-4 bg-background border flex flex-col gap-6 rounded-none'
               >
                 <div className='flex items-center justify-between w-full'>
                   <SparkleIcon className='size-6' />
@@ -93,7 +93,7 @@ export default function ProjectsView() {
               <Button
                 variant='outline'
                 onClick={() => setImportDialogOpen(true)}
-                className='h-full items-start justify-start p-4 bg-background border flex flex-col gap-6 rounded-lg'
+                className='h-full items-start justify-start p-4 bg-background border flex flex-col gap-6 rounded-none'
               >
                 <div className='flex items-center justify-between w-full'>
                   <FaGithub className='size-6' />
