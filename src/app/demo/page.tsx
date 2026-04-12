@@ -19,6 +19,18 @@ export default function DemoPage() {
     setIsLoading2(false)
   }
 
+  const handleClientError = async () => {
+    throw new Error('Client error: Something went wrong in the browser!')
+  }
+
+  const handleApiError = async () => {
+    await fetch('/api/demo/error', { method: 'POST' })
+  }
+
+  const handleInngestError = async () => {
+    await fetch('/api/demo/inngest-error', { method: 'POST' })
+  }
+
   return (
     <div className='p-8 space-x-4'>
       <Button onClick={handleBlocking} disabled={isLoading}>
@@ -27,6 +39,10 @@ export default function DemoPage() {
 
       <Button onClick={handleBackground} disabled={isLoading2}>
         {isLoading2 ? 'Loading...' : 'Background'}
+      </Button>
+
+      <Button variant={'destructive'} onClick={handleClientError}>
+        Client Error
       </Button>
     </div>
   )
