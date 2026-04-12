@@ -21,7 +21,7 @@ export const demoGenerate = inngest.createFunction(
           return result.markdown ?? null
         }),
       )
-      
+
       return results.filter(Boolean).join('\n\n')
     })
 
@@ -33,12 +33,17 @@ export const demoGenerate = inngest.createFunction(
       return await generateText({
         model: anthropic('claude-haiku-4-5-20251001'),
         prompt: finalPrompt,
-        experimental_telemetry: {
-          isEnabled: true,
-          recordInputs: true,
-          recordOutputs: true,
-        },
+        experimental_telemetry: { isEnabled: true, recordInputs: true, recordOutputs: true },
       })
+    })
+  },
+)
+
+export const demoError = inngest.createFunction(
+  { id: 'demo-error', triggers: { event: 'demo/error' } },
+  async ({ step }) => {
+    await step.run('fail', async () => {
+      throw new Error('Inngest error: Background job failed!')
     })
   },
 )
