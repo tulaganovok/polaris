@@ -17,7 +17,7 @@ export default function ContinueCard({ project }: ContinueCardProps) {
       <Button
         variant='outline'
         asChild
-        className='items-start justify-start p-4 bg-background border rounded-lg flex flex-col gap-2 w-full h-auto group'
+        className='items-start justify-start p-4 bg-background border rounded-none flex flex-col gap-2 w-full h-auto group'
       >
         <Link href={`/projects/${project._id}`} className='group'>
           <div className='flex items-center justify-between w-full'>
