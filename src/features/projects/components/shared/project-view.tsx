@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 import { Allotment } from 'allotment'
 import { Button } from '@/components/ui/button'
 import { FaGithub } from 'react-icons/fa'
+import FileExplorer from '../file-explorer'
 
 const MIN_SIDEBAR_WIDTH = 200
 const MAX_SIDEBAR_WIDTH = 800
@@ -59,7 +60,7 @@ export default function ProjectView({ projectId }: ProjectViewProps) {
               maxSize={MAX_SIDEBAR_WIDTH}
               preferredSize={DEFAULT_SIDEBAR_WIDTH}
             >
-              Panel 1{/* <FileExplorer projectId={projectId} /> */}
+              <FileExplorer projectId={projectId} />
             </Allotment.Pane>
 
             <Allotment.Pane>Panel 2{/* <EditorView projectId={projectId} /> */}</Allotment.Pane>
