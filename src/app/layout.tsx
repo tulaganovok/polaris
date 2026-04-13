@@ -4,6 +4,7 @@ import { PropsWithChildren } from 'react'
 import { ClerkProvider } from '@clerk/nextjs'
 import { dark } from '@clerk/themes'
 import { TooltipProvider } from '@/components/ui/tooltip'
+import { Toaster } from '@/components/ui/sonner'
 import ThemeProvider from '@/components/providers/theme.provider'
 import ConvexProvider from '@/components/providers/convex.provider'
 import AuthProvider from '@/components/providers/auth.provider'
@@ -43,7 +44,10 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
           <ClerkProvider appearance={{ theme: dark }}>
             <ConvexProvider>
               <AuthProvider>
-                <TooltipProvider>{children}</TooltipProvider>
+                <TooltipProvider>
+                  {children}
+                  <Toaster />
+                </TooltipProvider>
               </AuthProvider>
             </ConvexProvider>
           </ClerkProvider>
