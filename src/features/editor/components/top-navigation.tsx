@@ -69,6 +69,8 @@ const Tab = ({
 export default function TopNavigation({ projectId }: { projectId: Id<'projects'> }) {
   const { openTabs } = useEditor(projectId)
 
+  if (openTabs.length === 0) return null
+
   return (
     <ScrollArea className='flex-1'>
       <nav className='bg-sidebar flex items-center h-8.75 border-b'>
