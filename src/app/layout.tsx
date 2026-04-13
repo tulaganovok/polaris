@@ -9,6 +9,7 @@ import ThemeProvider from '@/components/providers/theme.provider'
 import ConvexProvider from '@/components/providers/convex.provider'
 import AuthProvider from '@/components/providers/auth.provider'
 import './globals.css'
+import 'allotment/dist/style.css'
 
 const inter = Inter({
   variable: '--font-inter',

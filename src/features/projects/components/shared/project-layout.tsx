@@ -5,7 +5,6 @@ import Navbar from './navbar'
 import { Id } from '../../../../../convex/_generated/dataModel'
 import { Allotment } from 'allotment'
 import Sidebar from '@/features/conversations/components/shared/sidebar'
-import 'allotment/dist/style.css'
 
 const MIN_SIDEBAR_WIDTH = 200
 const MAX_SIDEBAR_WIDTH = 800
@@ -24,8 +23,10 @@ export default function ProjectLayout({ projectId, children }: ProjectIdLayoutPr
       <div className='flex-1 flex overflow-hidden'>
         <Allotment
           className='flex-1'
-          defaultSizes={[DEFAULT_CONVERSATION_SIDEBAR_WIDTH, DEFAULT_MAIN_SIZE]}
+          defaultSizes={[DEFAULT_MAIN_SIZE, DEFAULT_CONVERSATION_SIDEBAR_WIDTH]}
         >
+          <Allotment.Pane>{children}</Allotment.Pane>
+
           <Allotment.Pane
             snap
             minSize={MIN_SIDEBAR_WIDTH}
@@ -34,8 +35,6 @@ export default function ProjectLayout({ projectId, children }: ProjectIdLayoutPr
           >
             <Sidebar projectId={projectId} />
           </Allotment.Pane>
-
-          <Allotment.Pane>{children}</Allotment.Pane>
         </Allotment>
       </div>
     </div>
