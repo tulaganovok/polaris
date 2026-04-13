@@ -7,6 +7,7 @@ import { Allotment } from 'allotment'
 import { Button } from '@/components/ui/button'
 import { FaGithub } from 'react-icons/fa'
 import FileExplorer from '../file-explorer'
+import EditorView from '@/features/editor/components/editor-view'
 
 const MIN_SIDEBAR_WIDTH = 200
 const MAX_SIDEBAR_WIDTH = 800
@@ -63,11 +64,14 @@ export default function ProjectView({ projectId }: ProjectViewProps) {
               <FileExplorer projectId={projectId} />
             </Allotment.Pane>
 
-            <Allotment.Pane>Panel 2{/* <EditorView projectId={projectId} /> */}</Allotment.Pane>
+            <Allotment.Pane>
+              <EditorView projectId={projectId} />
+            </Allotment.Pane>
           </Allotment>
         </div>
 
         <div className={cn('absolute inset-0', activeView === 'preview' ? 'visible' : 'invisible')}>
+          Preview
           {/* <PreviewView projectId={projectId} /> */}
         </div>
       </div>
