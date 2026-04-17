@@ -12,6 +12,7 @@ import Image from 'next/image'
 import ProjectsList from './projects-list'
 import { useCreateProject } from '../../hooks/use-projects'
 import ProjectsCommandDialog from '../dialogs/projects-command.dialog'
+import ImportGithubDialog from '../dialogs/import-github.dialog'
 
 const font = Poppins({
   subsets: ['latin'],
@@ -51,10 +52,7 @@ export default function ProjectsView() {
 
   return (
     <>
-      {/* <ImportGithubDialog
-        open={importDialogOpen}
-        onOpenChange={setImportDialogOpen}
-      /> */}
+      <ImportGithubDialog open={importDialogOpen} onOpenChange={setImportDialogOpen} />
 
       {/* <NewProjectDialog
         open={newProjectDialogOpen}
