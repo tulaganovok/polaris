@@ -4,11 +4,10 @@ import { useState } from 'react'
 import { Id } from '../../../../../convex/_generated/dataModel'
 import { cn } from '@/lib/utils'
 import { Allotment } from 'allotment'
-import { Button } from '@/components/ui/button'
-import { FaGithub } from 'react-icons/fa'
 import FileExplorer from '../file-explorer'
 import EditorView from '@/features/editor/components/editor-view'
 import PreviewView from '../preview/preview-view'
+import ExportPopover from '../dialogs/export-popover'
 
 const MIN_SIDEBAR_WIDTH = 200
 const MAX_SIDEBAR_WIDTH = 800
@@ -46,10 +45,7 @@ export default function ProjectView({ projectId }: ProjectViewProps) {
         </div>
 
         <div className='flex-1 flex justify-end h-full'>
-          <Button variant={'outline'} className='h-full rounded-none'>
-            <FaGithub /> Export
-          </Button>
-          {/* <ExportPopover projectId={projectId} /> */}
+          <ExportPopover projectId={projectId} />
         </div>
       </nav>
 
