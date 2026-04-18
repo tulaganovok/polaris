@@ -10,9 +10,9 @@ import { Button } from '@/components/ui/button'
 import { Kbd } from '@/components/ui/kbd'
 import Image from 'next/image'
 import ProjectsList from './projects-list'
-import { useCreateProject } from '../../hooks/use-projects'
 import ProjectsCommandDialog from '../dialogs/projects-command.dialog'
 import ImportGithubDialog from '../dialogs/import-github.dialog'
+import { NewProjectDialog } from '../dialogs/new-project.dialog'
 
 const font = Poppins({
   subsets: ['latin'],
@@ -23,8 +23,6 @@ export default function ProjectsView() {
   const [commandDialogOpen, setCommandDialogOpen] = useState(false)
   const [importDialogOpen, setImportDialogOpen] = useState(false)
   const [newProjectDialogOpen, setNewProjectDialogOpen] = useState(false)
-
-  const createProject = useCreateProject()
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -53,11 +51,7 @@ export default function ProjectsView() {
   return (
     <>
       <ImportGithubDialog open={importDialogOpen} onOpenChange={setImportDialogOpen} />
-
-      {/* <NewProjectDialog
-        open={newProjectDialogOpen}
-        onOpenChange={setNewProjectDialogOpen}
-      /> */}
+      <NewProjectDialog open={newProjectDialogOpen} onOpenChange={setNewProjectDialogOpen} />
 
       <div className='min-h-screen bg-sidebar flex flex-col items-center justify-center p-6 md:p-16'>
         <div className='w-full max-w-lg mx-auto flex flex-col gap-6 items-center'>
@@ -75,7 +69,7 @@ export default function ProjectsView() {
             <div className='grid grid-cols-2 gap-4'>
               <Button
                 variant='outline'
-                onClick={() => createProject({ name: 'Untitled Project' })}
+                onClick={() => setNewProjectDialogOpen(true)}
                 className='h-full items-start justify-start p-4 bg-background border flex flex-col gap-6 rounded-none'
               >
                 <div className='flex items-center justify-between w-full'>

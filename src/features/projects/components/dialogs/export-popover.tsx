@@ -1,5 +1,5 @@
 import React from 'react'
-import ky, { HTTPError } from 'ky'
+import ky from 'ky'
 import { z } from 'zod'
 import { toast } from 'sonner'
 import { useForm } from '@tanstack/react-form'
@@ -66,25 +66,22 @@ export default function ExportPopover({ projectId }: ExportPopoverProps) {
     },
     onSubmit: async ({ value }) => {
       try {
-        await ky.post('/api/github/export', {
+        const response = await ky.post('/api/github/export', {
           json: {
             projectId,
             repoName: value.repoName,
             visibility: value.visibility,
             description: value.description || undefined,
           },
+          throwHttpErrors: false,
         })
 
-        toast.success('Export started...')
-      } catch (error) {
-        if (error instanceof HTTPError) {
-          const body = await error.response.json<{ error: string }>()
+        if (!response.ok) {
+          const body = await response.json<{ error: string }>()
+
           if (body.error?.includes('Pro plan required')) {
-            toast.error('Upgrade to import repositories', {
-              action: {
-                label: 'Upgrade',
-                onClick: () => openUserProfile(),
-              },
+            toast.error('Upgrade to export repositories', {
+              action: { label: 'Upgrade', onClick: () => openUserProfile() },
             })
             setOpen(false)
             return
@@ -92,15 +89,18 @@ export default function ExportPopover({ projectId }: ExportPopoverProps) {
 
           if (body.error?.includes('GitHub not connected')) {
             toast.error('GitHub account not connected', {
-              action: {
-                label: 'Connect',
-                onClick: () => openUserProfile(),
-              },
+              action: { label: 'Connect', onClick: () => openUserProfile() },
             })
             setOpen(false)
             return
           }
+
+          toast.error('Unable to export repository')
+          return
         }
+
+        toast.success('Export started...')
+      } catch {
         toast.error('Unable to export repository')
       }
     },
