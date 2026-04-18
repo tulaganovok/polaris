@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/refs */
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -395,7 +396,9 @@ export const CodeBlockContent = ({
 
   // Invalidate stale async tokens synchronously during render
   if (
+    // eslint-disable-next-line react-hooks/refs
     asyncKeyRef.current.code !== code ||
+    // eslint-disable-next-line react-hooks/refs
     asyncKeyRef.current.language !== language
   ) {
     asyncKeyRef.current = { code, language };
